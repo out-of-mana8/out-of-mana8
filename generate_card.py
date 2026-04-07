@@ -50,16 +50,16 @@ def hr(y):
     return f'<line x1="{PAD}" y1="{y}" x2="{W-PAD}" y2="{y}" stroke="{C_BORDER}" stroke-width="0.5"/>'
 
 def pill(x, y, text, size, fill, bg, px=10, py=4, spacing=0):
-    """Text with a colored background pill."""
+    """Text with a colored background pill. x is the LEFT EDGE of the rect."""
     ls_gap = (len(text) - 1) * spacing
     w  = round(len(text) * size * MONO_W + ls_gap + px * 2)
     h  = round(size * 1.15 + py * 2)
     ry = round(y - size * 0.82 - py)
     ls = str(spacing) if spacing else None
     return (
-        f'<rect x="{x - px}" y="{ry}" width="{w}" height="{h}" rx="5" fill="{bg}"/>\n  '
-        + t(x, y, text, size=size, fill=fill, spacing=ls),
-        w   # return width so caller can chain pills
+        f'<rect x="{x}" y="{ry}" width="{w}" height="{h}" rx="5" fill="{bg}"/>\n  '
+        + t(x + px, y, text, size=size, fill=fill, spacing=ls),
+        w   # return total width so caller can chain pills
     )
 
 def section_pill(x, y, label):
