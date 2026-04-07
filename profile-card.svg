@@ -1,108 +1,105 @@
-<svg viewBox="0 0 760 900" xmlns="http://www.w3.org/2000/svg" width="760" height="900">
+<svg viewBox="0 0 760 1056" xmlns="http://www.w3.org/2000/svg" width="760" height="1056">
   <defs>
     <style>text { font-family: "JetBrains Mono", "Courier New", monospace; }</style>
   </defs>
-
-  <!-- bg -->
-  <rect width="760" height="900" fill="#0d1117" rx="12"/>
+  <rect width="760" height="1056" fill="#0d1117" rx="12"/>
   <rect width="760" height="3" fill="#00f0c8"/>
 
   <!-- header -->
   <text x="36" y="52" font-size="30" fill="#e6edf3" text-anchor="start" font-weight="700" letter-spacing="-0.5">out-of-mana8</text>
   <text x="36" y="78" font-size="13" fill="#555e6b" text-anchor="start">ECE @ Vanderbilt  ·  Synaptics  ·  AI-optimized silicon</text>
-
   <line x1="36" y1="96" x2="724" y2="96" stroke="#21262d" stroke-width="0.5"/>
 
   <!-- pipeline -->
   <text x="36" y="116" font-size="10" fill="#30363d" text-anchor="start" letter-spacing="2.5">PIPELINE</text>
   <rect x="36" y="130" width="150" height="40" rx="5" fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>
   <text x="111" y="155" font-size="12" fill="#00f0c8" text-anchor="middle">schematic</text>
-  <rect x="215" y="130" width="150" height="40" rx="5" fill="#0d1117" stroke="#21262d" stroke-width="0.9"/>
-  <text x="290" y="155" font-size="12" fill="#8b949e" text-anchor="middle">PCB layout</text>
-  <rect x="394" y="130" width="150" height="40" rx="5" fill="#0d1117" stroke="#21262d" stroke-width="0.9"/>
-  <text x="469" y="155" font-size="12" fill="#8b949e" text-anchor="middle">JLCPCB fab</text>
-  <rect x="573" y="130" width="150" height="40" rx="5" fill="#0d1117" stroke="#21262d" stroke-width="0.9"/>
-  <text x="648" y="155" font-size="12" fill="#8b949e" text-anchor="middle">bring-up</text>
+  <rect x="215" y="130" width="150" height="40" rx="5" fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>
+  <text x="290" y="155" font-size="12" fill="#00f0c8" text-anchor="middle">PCB layout</text>
+  <rect x="394" y="130" width="150" height="40" rx="5" fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>
+  <text x="469" y="155" font-size="12" fill="#00f0c8" text-anchor="middle">PCB fab</text>
+  <rect x="573" y="130" width="150" height="40" rx="5" fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>
+  <text x="648" y="155" font-size="12" fill="#00f0c8" text-anchor="middle">bring-up</text>
   <line x1="186" y1="150" x2="208" y2="150" stroke="#21262d" stroke-width="1.2"/>
   <polygon points="208,146 215,150 208,154" fill="#21262d"/>
   <line x1="365" y1="150" x2="387" y2="150" stroke="#21262d" stroke-width="1.2"/>
   <polygon points="387,146 394,150 387,154" fill="#21262d"/>
   <line x1="544" y1="150" x2="566" y2="150" stroke="#21262d" stroke-width="1.2"/>
   <polygon points="566,146 573,150 566,154" fill="#21262d"/>
-  <line x1="648" y1="170" x2="648" y2="203" stroke="#21262d" stroke-width="1.2"/>
-  <polygon points="644,203 648,210 652,203" fill="#21262d"/>
-  <rect x="36" y="210" width="150" height="40" rx="5" fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>
-  <text x="111" y="235" font-size="12" fill="#00f0c8" text-anchor="middle">UI / API</text>
-  <rect x="215" y="210" width="150" height="40" rx="5" fill="#0d1117" stroke="#21262d" stroke-width="0.9"/>
-  <text x="290" y="235" font-size="12" fill="#8b949e" text-anchor="middle">server</text>
-  <rect x="394" y="210" width="150" height="40" rx="5" fill="#0d1117" stroke="#21262d" stroke-width="0.9"/>
-  <text x="469" y="235" font-size="12" fill="#8b949e" text-anchor="middle">firmware</text>
-  <rect x="573" y="210" width="150" height="40" rx="5" fill="#0d1117" stroke="#21262d" stroke-width="0.9"/>
-  <text x="648" y="235" font-size="12" fill="#8b949e" text-anchor="middle">debug</text>
-  <line x1="215" y1="230" x2="193" y2="230" stroke="#21262d" stroke-width="1.2"/>
-  <polygon points="193,226 186,230 193,234" fill="#21262d"/>
-  <line x1="394" y1="230" x2="372" y2="230" stroke="#21262d" stroke-width="1.2"/>
-  <polygon points="372,226 365,230 372,234" fill="#21262d"/>
-  <line x1="573" y1="230" x2="551" y2="230" stroke="#21262d" stroke-width="1.2"/>
-  <polygon points="551,226 544,230 551,234" fill="#21262d"/>
+  <line x1="648" y1="170" x2="648" y2="208" stroke="#21262d" stroke-width="1.2"/>
+  <polygon points="644,208 648,215 652,208" fill="#21262d"/>
+  <rect x="36" y="215" width="150" height="40" rx="5" fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>
+  <text x="111" y="240" font-size="12" fill="#00f0c8" text-anchor="middle">UI / API</text>
+  <rect x="215" y="215" width="150" height="40" rx="5" fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>
+  <text x="290" y="240" font-size="12" fill="#00f0c8" text-anchor="middle">server</text>
+  <rect x="394" y="215" width="150" height="40" rx="5" fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>
+  <text x="469" y="240" font-size="12" fill="#00f0c8" text-anchor="middle">firmware</text>
+  <rect x="573" y="215" width="150" height="40" rx="5" fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>
+  <text x="648" y="240" font-size="12" fill="#00f0c8" text-anchor="middle">validate</text>
+  <line x1="215" y1="235" x2="193" y2="235" stroke="#21262d" stroke-width="1.2"/>
+  <polygon points="193,231 186,235 193,239" fill="#21262d"/>
+  <line x1="394" y1="235" x2="372" y2="235" stroke="#21262d" stroke-width="1.2"/>
+  <polygon points="372,231 365,235 372,239" fill="#21262d"/>
+  <line x1="573" y1="235" x2="551" y2="235" stroke="#21262d" stroke-width="1.2"/>
+  <polygon points="551,231 544,235 551,239" fill="#21262d"/>
+  <line x1="36" y1="283" x2="724" y2="283" stroke="#21262d" stroke-width="0.5"/>
 
-  <line x1="36" y1="274" x2="724" y2="274" stroke="#21262d" stroke-width="0.5"/>
+  <!-- domains 2x2 -->
+  <text x="36" y="303" font-size="10" fill="#30363d" text-anchor="start" letter-spacing="2.5">DOMAINS</text>
+  <rect x="36" y="320" width="336" height="155" rx="8" fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>
+  <rect x="36" y="320" width="336" height="3" fill="#00f0c8"/>
+  <text x="52" y="344" font-size="11" fill="#00f0c8" text-anchor="start" letter-spacing="2">AUDIO</text>
+  <text x="52" y="370" font-size="13" fill="#8b949e" text-anchor="start">full-duplex · AEC/VAD</text>
+  <text x="52" y="392" font-size="13" fill="#8b949e" text-anchor="start">I²S signal chains</text>
+  <text x="52" y="414" font-size="13" fill="#8b949e" text-anchor="start">edge STT→LLM→TTS</text>
+  <text x="52" y="452" font-size="11" fill="#30363d" text-anchor="start">ESP32-S3 · Class-D amp</text>
+  <rect x="388" y="320" width="336" height="155" rx="8" fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>
+  <rect x="388" y="320" width="336" height="3" fill="#00b896"/>
+  <text x="404" y="344" font-size="11" fill="#00b896" text-anchor="start" letter-spacing="2">VISION</text>
+  <text x="404" y="370" font-size="13" fill="#8b949e" text-anchor="start">MIPI CSI-2 · DSI</text>
+  <text x="404" y="392" font-size="13" fill="#8b949e" text-anchor="start">IMX708 · ESP32-P4</text>
+  <text x="404" y="414" font-size="13" fill="#8b949e" text-anchor="start">ISP · RAW10 · D-PHY</text>
+  <text x="404" y="452" font-size="11" fill="#30363d" text-anchor="start">custom SoC board</text>
+  <rect x="36" y="491" width="336" height="155" rx="8" fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>
+  <rect x="36" y="491" width="336" height="3" fill="#007a63"/>
+  <text x="52" y="515" font-size="11" fill="#007a63" text-anchor="start" letter-spacing="2">AVIONICS</text>
+  <text x="52" y="541" font-size="13" fill="#8b949e" text-anchor="start">EE validation · Zipline</text>
+  <text x="52" y="563" font-size="13" fill="#8b949e" text-anchor="start">GPS RTK prototyping</text>
+  <text x="52" y="585" font-size="13" fill="#8b949e" text-anchor="start">ESP32 mesh networks</text>
+  <text x="52" y="623" font-size="11" fill="#30363d" text-anchor="start">Oshkosh AeroTech</text>
+  <rect x="388" y="491" width="336" height="155" rx="8" fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>
+  <rect x="388" y="491" width="336" height="3" fill="#4d9e8c"/>
+  <text x="404" y="515" font-size="11" fill="#4d9e8c" text-anchor="start" letter-spacing="2">SENSING</text>
+  <text x="404" y="541" font-size="13" fill="#8b949e" text-anchor="start">INA · PGA · sigma-delta ADC</text>
+  <text x="404" y="563" font-size="13" fill="#8b949e" text-anchor="start">SHT40 · SCD40 · OPT3001</text>
+  <text x="404" y="585" font-size="13" fill="#8b949e" text-anchor="start">MEMS mic · anti-alias filter</text>
+  <text x="404" y="623" font-size="11" fill="#30363d" text-anchor="start">Stanford AI Lab</text>
+  <line x1="36" y1="670" x2="724" y2="670" stroke="#21262d" stroke-width="0.5"/>
 
-  <!-- domain cards 2×2 -->
-  <text x="36" y="294" font-size="10" fill="#30363d" text-anchor="start" letter-spacing="2.5">DOMAINS</text>
-  <rect x="36" y="310" width="336" height="155" rx="8" fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>
-  <rect x="36" y="310" width="336" height="3" fill="#00f0c8"/>
-  <text x="52" y="334" font-size="11" fill="#00f0c8" text-anchor="start" letter-spacing="2">AUDIO</text>
-  <text x="52" y="360" font-size="13" fill="#8b949e" text-anchor="start">full-duplex · AEC/VAD</text>
-  <text x="52" y="382" font-size="13" fill="#8b949e" text-anchor="start">I²S signal chains</text>
-  <text x="52" y="404" font-size="13" fill="#8b949e" text-anchor="start">edge STT→LLM→TTS</text>
-  <text x="52" y="442" font-size="11" fill="#30363d" text-anchor="start">ESP32-S3 · Class-D amp</text>
-  <rect x="388" y="310" width="336" height="155" rx="8" fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>
-  <rect x="388" y="310" width="336" height="3" fill="#00b896"/>
-  <text x="404" y="334" font-size="11" fill="#00b896" text-anchor="start" letter-spacing="2">VISION</text>
-  <text x="404" y="360" font-size="13" fill="#8b949e" text-anchor="start">MIPI CSI-2 · DSI</text>
-  <text x="404" y="382" font-size="13" fill="#8b949e" text-anchor="start">IMX708 · ESP32-P4</text>
-  <text x="404" y="404" font-size="13" fill="#8b949e" text-anchor="start">IMU · LiPo power</text>
-  <text x="404" y="442" font-size="11" fill="#30363d" text-anchor="start">custom SoC board</text>
-  <rect x="36" y="481" width="336" height="155" rx="8" fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>
-  <rect x="36" y="481" width="336" height="3" fill="#007a63"/>
-  <text x="52" y="505" font-size="11" fill="#007a63" text-anchor="start" letter-spacing="2">AVIONICS</text>
-  <text x="52" y="531" font-size="13" fill="#8b949e" text-anchor="start">EE validation · Zipline</text>
-  <text x="52" y="553" font-size="13" fill="#8b949e" text-anchor="start">GPS RTK prototyping</text>
-  <text x="52" y="575" font-size="13" fill="#8b949e" text-anchor="start">ESP32 mesh networks</text>
-  <text x="52" y="613" font-size="11" fill="#30363d" text-anchor="start">Oshkosh AeroTech</text>
-  <rect x="388" y="481" width="336" height="155" rx="8" fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>
-  <rect x="388" y="481" width="336" height="3" fill="#4d9e8c"/>
-  <text x="404" y="505" font-size="11" fill="#4d9e8c" text-anchor="start" letter-spacing="2">SENSING</text>
-  <text x="404" y="531" font-size="13" fill="#8b949e" text-anchor="start">op-amp · anti-alias</text>
-  <text x="404" y="553" font-size="13" fill="#8b949e" text-anchor="start">flex PCB · wearable</text>
-  <text x="404" y="575" font-size="13" fill="#8b949e" text-anchor="start">medical · env. monitor</text>
-  <text x="404" y="613" font-size="11" fill="#30363d" text-anchor="start">Stanford AI Lab</text>
-
-  <line x1="36" y1="656" x2="724" y2="656" stroke="#21262d" stroke-width="0.5"/>
-
-  <!-- identity -->
-  <text x="36" y="680" font-size="13" fill="#00f0c8" text-anchor="start">identity:</text>
-  <text x="56" y="666" font-size="13" fill="#79c0ff" text-anchor="start">school:</text>
-  <text x="191" y="666" font-size="13" fill="#8b949e" text-anchor="start">Vanderbilt ECE</text>
-  <text x="56" y="692" font-size="13" fill="#79c0ff" text-anchor="start">intern:</text>
-  <text x="191" y="692" font-size="13" fill="#8b949e" text-anchor="start">Synaptics  →  mixed-signal ASIC</text>
-  <text x="56" y="718" font-size="13" fill="#79c0ff" text-anchor="start">builds:</text>
-  <text x="191" y="718" font-size="13" fill="#8b949e" text-anchor="start">“schematic → silicon, every time”</text>
+  <!-- experience -->
+  <text x="56" y="700" font-size="13" fill="#00f0c8" text-anchor="start">experience:</text>
+  <text x="66" y="728" font-size="11" fill="#30363d" text-anchor="start">‣</text>
+  <text x="82" y="728" font-size="13" fill="#8b949e" text-anchor="start">Research @ Vanderbilt Miniature Robotics Lab</text>
+  <text x="66" y="754" font-size="11" fill="#30363d" text-anchor="start">‣</text>
+  <text x="82" y="754" font-size="13" fill="#8b949e" text-anchor="start">Research @ Stanford Artificial Intelligence Lab</text>
+  <text x="66" y="780" font-size="11" fill="#30363d" text-anchor="start">‣</text>
+  <text x="82" y="780" font-size="13" fill="#8b949e" text-anchor="start">EE Intern @ Zipline</text>
+  <text x="66" y="806" font-size="11" fill="#30363d" text-anchor="start">‣</text>
+  <text x="82" y="806" font-size="13" fill="#8b949e" text-anchor="start">EE Intern @ Oshkosh AeroTech</text>
+  <text x="66" y="832" font-size="11" fill="#30363d" text-anchor="start">‣</text>
+  <text x="82" y="832" font-size="13" fill="#8b949e" text-anchor="start">ASIC Intern @ Synaptics  →  summer 2025</text>
 
   <!-- signal chain -->
-  <text x="36" y="770" font-size="13" fill="#00f0c8" text-anchor="start">signal_chain:</text>
-  <text x="56" y="790" font-size="13" fill="#79c0ff" text-anchor="start">analog:</text>
-  <text x="191" y="790" font-size="13" fill="#8b949e" text-anchor="start">op-amp · anti-alias · ESD</text>
-  <text x="56" y="816" font-size="13" fill="#79c0ff" text-anchor="start">digital:</text>
-  <text x="191" y="816" font-size="13" fill="#8b949e" text-anchor="start">I²S · MIPI CSI-2 · SPI · I²C</text>
-  <text x="56" y="842" font-size="13" fill="#79c0ff" text-anchor="start">power:</text>
-  <text x="191" y="842" font-size="13" fill="#8b949e" text-anchor="start">LiPo · LDO · decoupling</text>
-
-  <line x1="36" y1="878" x2="724" y2="878" stroke="#21262d" stroke-width="0.5"/>
+  <text x="56" y="878" font-size="13" fill="#00f0c8" text-anchor="start">signal_chain:</text>
+  <text x="66" y="906" font-size="13" fill="#79c0ff" text-anchor="start">analog:</text>
+  <text x="211" y="906" font-size="13" fill="#8b949e" text-anchor="start">op-amp · anti-alias · ESD</text>
+  <text x="66" y="932" font-size="13" fill="#79c0ff" text-anchor="start">digital:</text>
+  <text x="211" y="932" font-size="13" fill="#8b949e" text-anchor="start">I²S · MIPI CSI-2 · SPI · I²C</text>
+  <text x="66" y="958" font-size="13" fill="#79c0ff" text-anchor="start">power:</text>
+  <text x="211" y="958" font-size="13" fill="#8b949e" text-anchor="start">LiPo · LDO · decoupling</text>
+  <line x1="36" y1="1000" x2="724" y2="1000" stroke="#21262d" stroke-width="0.5"/>
 
   <!-- footer -->
-  <text x="36" y="904" font-size="11" fill="#30363d" text-anchor="start">PlatformIO · KiCad · EasyEDA Pro · FreeRTOS · C++ · Python</text>
-  <text x="724" y="904" font-size="11" fill="#00f0c8" text-anchor="end">schematic → silicon</text>
-
+  <text x="36" y="1028" font-size="11" fill="#30363d" text-anchor="start">PlatformIO · KiCad · EasyEDA Pro · FreeRTOS · C++ · Python</text>
+  <text x="724" y="1028" font-size="11" fill="#00f0c8" text-anchor="end">schematic → silicon</text>
 </svg>
