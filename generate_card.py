@@ -29,25 +29,26 @@ DOMAINS = [
     ], "Stanford AI Lab"),
 ]
 
-EXPERIENCES = [
-    "Research @ Vanderbilt Miniature Robotics Lab",
-    "Research @ Stanford Artificial Intelligence Lab",
-    "EE Intern @ Zipline",
-    "EE Intern @ Oshkosh AeroTech",
-]
+# colour palette
+C_BG      = "#0d1117"   # main background
+C_CARD    = "#161b22"   # card background (lifted so text pops)
+C_BORDER  = "#21262d"   # subtle borders / hr lines
+C_TEXT    = "#c9d1d9"   # primary readable text
+C_DIM     = "#8b949e"   # secondary text (section labels, subs, footer)
+C_ACCENT  = "#00f0c8"   # teal highlight
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
-def t(x, y, s, size=14, fill="#8b949e", anchor="start", weight="normal", spacing=None):
+def t(x, y, s, size=14, fill=C_TEXT, anchor="start", weight="normal", spacing=None):
     attrs  = f' font-weight="{weight}"' if weight != "normal" else ""
     attrs += f' letter-spacing="{spacing}"' if spacing else ""
     return f'<text x="{x}" y="{y}" font-size="{size}" fill="{fill}" text-anchor="{anchor}"{attrs}>{s}</text>'
 
 def hr(y):
-    return f'<line x1="{PAD}" y1="{y}" x2="{W-PAD}" y2="{y}" stroke="#21262d" stroke-width="0.5"/>'
+    return f'<line x1="{PAD}" y1="{y}" x2="{W-PAD}" y2="{y}" stroke="{C_BORDER}" stroke-width="0.5"/>'
 
 def section_label(x, y, label):
-    return t(x, y, label, size=12, fill="#30363d", spacing="2.5")
+    return t(x, y, label, size=12, fill=C_DIM, spacing="2.5")
 
 # ── pipeline ──────────────────────────────────────────────────────────────────
 
@@ -59,26 +60,26 @@ def node(x, y, label):
     cy = y + NODE_H // 2 + 5
     return (
         f'<rect x="{x}" y="{y}" width="{NODE_W}" height="{NODE_H}" rx="5"'
-        f' fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>\n  '
-        + t(cx, cy, label, size=14, fill="#00f0c8", anchor="middle")
+        f' fill="{C_BG}" stroke="{C_ACCENT}" stroke-width="0.9"/>\n  '
+        + t(cx, cy, label, size=14, fill=C_ACCENT, anchor="middle")
     )
 
 def rarrow(x1, x2, y):
     return (
-        f'<line x1="{x1}" y1="{y}" x2="{x2-7}" y2="{y}" stroke="#21262d" stroke-width="1.2"/>\n  '
-        f'<polygon points="{x2-7},{y-4} {x2},{y} {x2-7},{y+4}" fill="#21262d"/>'
+        f'<line x1="{x1}" y1="{y}" x2="{x2-7}" y2="{y}" stroke="{C_BORDER}" stroke-width="1.2"/>\n  '
+        f'<polygon points="{x2-7},{y-4} {x2},{y} {x2-7},{y+4}" fill="{C_BORDER}"/>'
     )
 
 def larrow(x1, x2, y):
     return (
-        f'<line x1="{x1}" y1="{y}" x2="{x2+7}" y2="{y}" stroke="#21262d" stroke-width="1.2"/>\n  '
-        f'<polygon points="{x2+7},{y-4} {x2},{y} {x2+7},{y+4}" fill="#21262d"/>'
+        f'<line x1="{x1}" y1="{y}" x2="{x2+7}" y2="{y}" stroke="{C_BORDER}" stroke-width="1.2"/>\n  '
+        f'<polygon points="{x2+7},{y-4} {x2},{y} {x2+7},{y+4}" fill="{C_BORDER}"/>'
     )
 
 def darrow(x, y1, y2):
     return (
-        f'<line x1="{x}" y1="{y1}" x2="{x}" y2="{y2-7}" stroke="#21262d" stroke-width="1.2"/>\n  '
-        f'<polygon points="{x-4},{y2-7} {x},{y2} {x+4},{y2-7}" fill="#21262d"/>'
+        f'<line x1="{x}" y1="{y1}" x2="{x}" y2="{y2-7}" stroke="{C_BORDER}" stroke-width="1.2"/>\n  '
+        f'<polygon points="{x-4},{y2-7} {x},{y2} {x+4},{y2-7}" fill="{C_BORDER}"/>'
     )
 
 # ── domain cards ──────────────────────────────────────────────────────────────
@@ -87,13 +88,13 @@ CARD_H = 162
 
 def domain_card(x, y, w, title, color, lines, sub=""):
     rows = "".join(
-        f'\n  ' + t(x + 16, y + 54 + i * 24, line, size=14)
+        f'\n  ' + t(x + 16, y + 54 + i * 24, line, size=14, fill=C_TEXT)
         for i, line in enumerate(lines)
     )
-    sub_el = f'\n  ' + t(x + 16, y + 140, sub, size=13, fill="#30363d") if sub else ""
+    sub_el = f'\n  ' + t(x + 16, y + 140, sub, size=13, fill=C_DIM) if sub else ""
     return (
         f'<rect x="{x}" y="{y}" width="{w}" height="{CARD_H}" rx="8"'
-        f' fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>\n  '
+        f' fill="{C_CARD}" stroke="{C_BORDER}" stroke-width="0.6"/>\n  '
         f'<rect x="{x}" y="{y}" width="{w}" height="3" fill="{color}"/>\n  '
         + t(x + 16, y + 26, title, size=13, fill=color, spacing="2")
         + rows + sub_el
@@ -134,33 +135,20 @@ def svg():
     hr2 = row2_bot + 28
     hr3 = card_row2_y + CARD_H + 24
 
-    # experience section
-    LINE        = 28
-    exp_label_y = hr3 + 32
-    exp_row_y0  = exp_label_y + 30
-
-    exp_rows = [t(PAD + 20, exp_label_y, "experience:", size=14, fill="#00f0c8")]
-    for i, entry in enumerate(EXPERIENCES):
-        y = exp_row_y0 + i * LINE
-        exp_rows.append(t(PAD + 30, y, "\u2023", size=13, fill="#30363d"))
-        exp_rows.append(t(PAD + 48, y, entry, size=14))
-    exp_section = "\n  ".join(exp_rows)
-
     # footer
-    hr4    = exp_row_y0 + len(EXPERIENCES) * LINE + 20
-    foot_y = hr4 + 30
+    foot_y = hr3 + 40
     H      = foot_y + 30
 
     return f'''<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}">
   <defs>
     <style>text {{ font-family: "JetBrains Mono", "Courier New", monospace; }}</style>
   </defs>
-  <rect width="{W}" height="{H}" fill="#0d1117" rx="12"/>
-  <rect width="{W}" height="3" fill="#00f0c8"/>
+  <rect width="{W}" height="{H}" fill="{C_BG}" rx="12"/>
+  <rect width="{W}" height="3" fill="{C_ACCENT}"/>
 
   <!-- header -->
   {t(PAD, 54, "Tausif Samin", size=30, fill="#e6edf3", weight="700", spacing="-0.5")}
-  {t(PAD, 80, "ECE @ Vanderbilt  \xb7  ASIC @ Synaptics", size=14, fill="#555e6b")}
+  {t(PAD, 80, "ECE @ Vanderbilt  \xb7  ASIC @ Synaptics", size=14, fill=C_DIM)}
   {hr(hr1)}
 
   <!-- pipeline -->
@@ -177,13 +165,9 @@ def svg():
   {cards}
   {hr(hr3)}
 
-  <!-- experience -->
-  {exp_section}
-  {hr(hr4)}
-
   <!-- footer -->
-  {t(PAD, foot_y, "PlatformIO \xb7 KiCad \xb7 EasyEDA Pro \xb7 FreeRTOS \xb7 C++ \xb7 Python", size=12, fill="#30363d")}
-  {t(W - PAD, foot_y, "schematic \u2192 silicon", size=12, fill="#00f0c8", anchor="end")}
+  {t(PAD, foot_y, "PlatformIO \xb7 KiCad \xb7 EasyEDA Pro \xb7 FreeRTOS \xb7 C++ \xb7 Python", size=12, fill=C_DIM)}
+  {t(W - PAD, foot_y, "schematic \u2192 silicon", size=12, fill=C_ACCENT, anchor="end")}
 </svg>'''
 
 
