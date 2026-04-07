@@ -128,7 +128,7 @@ def svg():
     conn_x  = node_xs[-1] + NODE_W // 2
 
     # HR positions
-    hr1 = 110
+    hr1 = 120
     row1_y  = hr1 + 52;  row1_bot = row1_y + NODE_H;  row1_cy = row1_y + NODE_H // 2
     row2_y  = row1_y + 88; row2_bot = row2_y + NODE_H;  row2_cy = row2_y + NODE_H // 2
     conn_x  = node_xs[-1] + NODE_W // 2
