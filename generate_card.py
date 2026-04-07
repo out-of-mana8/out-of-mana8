@@ -34,18 +34,11 @@ EXPERIENCES = [
     "Research @ Stanford Artificial Intelligence Lab",
     "EE Intern @ Zipline",
     "EE Intern @ Oshkosh AeroTech",
-    "ASIC Intern @ Synaptics  \u2192  summer 2025",
-]
-
-SIGNAL = [
-    ("analog:",  "op-amp \xb7 anti-alias \xb7 ESD"),
-    ("digital:", "I\u00b2S \xb7 MIPI CSI-2 \xb7 SPI \xb7 I\u00b2C"),
-    ("power:",   "LiPo \xb7 LDO \xb7 decoupling"),
 ]
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
-def t(x, y, s, size=13, fill="#8b949e", anchor="start", weight="normal", spacing=None):
+def t(x, y, s, size=14, fill="#8b949e", anchor="start", weight="normal", spacing=None):
     attrs  = f' font-weight="{weight}"' if weight != "normal" else ""
     attrs += f' letter-spacing="{spacing}"' if spacing else ""
     return f'<text x="{x}" y="{y}" font-size="{size}" fill="{fill}" text-anchor="{anchor}"{attrs}>{s}</text>'
@@ -54,12 +47,12 @@ def hr(y):
     return f'<line x1="{PAD}" y1="{y}" x2="{W-PAD}" y2="{y}" stroke="#21262d" stroke-width="0.5"/>'
 
 def section_label(x, y, label):
-    return t(x, y, label, size=10, fill="#30363d", spacing="2.5")
+    return t(x, y, label, size=12, fill="#30363d", spacing="2.5")
 
 # ── pipeline ──────────────────────────────────────────────────────────────────
 
 NODE_W = 150
-NODE_H = 40
+NODE_H = 42
 
 def node(x, y, label):
     cx = x + NODE_W // 2
@@ -67,7 +60,7 @@ def node(x, y, label):
     return (
         f'<rect x="{x}" y="{y}" width="{NODE_W}" height="{NODE_H}" rx="5"'
         f' fill="#0d1117" stroke="#00f0c8" stroke-width="0.9"/>\n  '
-        + t(cx, cy, label, size=12, fill="#00f0c8", anchor="middle")
+        + t(cx, cy, label, size=14, fill="#00f0c8", anchor="middle")
     )
 
 def rarrow(x1, x2, y):
@@ -90,19 +83,19 @@ def darrow(x, y1, y2):
 
 # ── domain cards ──────────────────────────────────────────────────────────────
 
-CARD_H = 155
+CARD_H = 162
 
 def domain_card(x, y, w, title, color, lines, sub=""):
     rows = "".join(
-        f'\n  ' + t(x + 16, y + 50 + i * 22, line, size=13)
+        f'\n  ' + t(x + 16, y + 54 + i * 24, line, size=14)
         for i, line in enumerate(lines)
     )
-    sub_el = f'\n  ' + t(x + 16, y + 132, sub, size=11, fill="#30363d") if sub else ""
+    sub_el = f'\n  ' + t(x + 16, y + 140, sub, size=13, fill="#30363d") if sub else ""
     return (
         f'<rect x="{x}" y="{y}" width="{w}" height="{CARD_H}" rx="8"'
         f' fill="#0d1117" stroke="#21262d" stroke-width="0.6"/>\n  '
         f'<rect x="{x}" y="{y}" width="{w}" height="3" fill="{color}"/>\n  '
-        + t(x + 16, y + 24, title, size=11, fill=color, spacing="2")
+        + t(x + 16, y + 26, title, size=13, fill=color, spacing="2")
         + rows + sub_el
     )
 
@@ -113,8 +106,8 @@ def svg():
     n       = len(PIPELINE_ROW1)
     gap     = (W - 2 * PAD - n * NODE_W) // (n - 1)
     node_xs = [PAD + i * (NODE_W + gap) for i in range(n)]
-    row1_y  = 130;  row1_bot = row1_y + NODE_H;  row1_cy = row1_y + NODE_H // 2
-    row2_y  = 215;  row2_bot = row2_y + NODE_H;  row2_cy = row2_y + NODE_H // 2
+    row1_y  = 132;  row1_bot = row1_y + NODE_H;  row1_cy = row1_y + NODE_H // 2
+    row2_y  = 220;  row2_bot = row2_y + NODE_H;  row2_cy = row2_y + NODE_H // 2
     conn_x  = node_xs[-1] + NODE_W // 2
 
     nodes_r1  = "\n  ".join(node(x, row1_y, l) for x, l in zip(node_xs, PIPELINE_ROW1))
@@ -127,7 +120,7 @@ def svg():
     card_gap    = 16
     card_w      = (W - 2 * PAD - card_gap) // 2
     card_xs     = [PAD, PAD + card_w + card_gap]
-    card_row1_y = 320
+    card_row1_y = 328
     card_row2_y = card_row1_y + CARD_H + 16
 
     cards = "\n  ".join(
@@ -136,38 +129,27 @@ def svg():
         for i, (title, color, lines, sub) in enumerate(DOMAINS)
     )
 
-    # HR positions (computed, no hardcoding)
-    hr1 = 96
+    # HR positions
+    hr1 = 98
     hr2 = row2_bot + 28
     hr3 = card_row2_y + CARD_H + 24
 
     # experience section
-    exp_label_y = hr3 + 30
-    exp_row_y0  = exp_label_y + 28
-    LINE        = 26
+    LINE        = 28
+    exp_label_y = hr3 + 32
+    exp_row_y0  = exp_label_y + 30
 
-    exp_rows = [t(PAD + 20, exp_label_y, "experience:", size=13, fill="#00f0c8")]
+    exp_rows = [t(PAD + 20, exp_label_y, "experience:", size=14, fill="#00f0c8")]
     for i, entry in enumerate(EXPERIENCES):
         y = exp_row_y0 + i * LINE
-        exp_rows.append(t(PAD + 30, y, "\u2023", size=11, fill="#30363d"))
-        exp_rows.append(t(PAD + 46, y, entry, size=13, fill="#8b949e"))
+        exp_rows.append(t(PAD + 30, y, "\u2023", size=13, fill="#30363d"))
+        exp_rows.append(t(PAD + 48, y, entry, size=14))
     exp_section = "\n  ".join(exp_rows)
 
-    # signal chain section
-    sig_label_y = exp_row_y0 + len(EXPERIENCES) * LINE + 20
-    sig_row_y0  = sig_label_y + 28
-
-    sig_rows = [t(PAD + 20, sig_label_y, "signal_chain:", size=13, fill="#00f0c8")]
-    for i, (k, v) in enumerate(SIGNAL):
-        y = sig_row_y0 + i * LINE
-        sig_rows.append(t(PAD + 30, y, k,  size=13, fill="#79c0ff"))
-        sig_rows.append(t(PAD + 175, y, v, size=13, fill="#8b949e"))
-    sig_section = "\n  ".join(sig_rows)
-
     # footer
-    hr4    = sig_row_y0 + len(SIGNAL) * LINE + 16
-    foot_y = hr4 + 28
-    H      = foot_y + 28   # computed height
+    hr4    = exp_row_y0 + len(EXPERIENCES) * LINE + 20
+    foot_y = hr4 + 30
+    H      = foot_y + 30
 
     return f'''<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}">
   <defs>
@@ -177,12 +159,12 @@ def svg():
   <rect width="{W}" height="3" fill="#00f0c8"/>
 
   <!-- header -->
-  {t(PAD, 52, "out-of-mana8", size=30, fill="#e6edf3", weight="700", spacing="-0.5")}
-  {t(PAD, 78, "ECE @ Vanderbilt  \xb7  Synaptics  \xb7  AI-optimized silicon", size=13, fill="#555e6b")}
+  {t(PAD, 54, "Tausif Samin", size=30, fill="#e6edf3", weight="700", spacing="-0.5")}
+  {t(PAD, 80, "ECE @ Vanderbilt  \xb7  ASIC @ Synaptics", size=14, fill="#555e6b")}
   {hr(hr1)}
 
   <!-- pipeline -->
-  {section_label(PAD, hr1 + 20, "PIPELINE")}
+  {section_label(PAD, hr1 + 22, "PIPELINE")}
   {nodes_r1}
   {arrows_r1}
   {connector}
@@ -191,20 +173,17 @@ def svg():
   {hr(hr2)}
 
   <!-- domains 2x2 -->
-  {section_label(PAD, hr2 + 20, "DOMAINS")}
+  {section_label(PAD, hr2 + 22, "DOMAINS")}
   {cards}
   {hr(hr3)}
 
   <!-- experience -->
   {exp_section}
-
-  <!-- signal chain -->
-  {sig_section}
   {hr(hr4)}
 
   <!-- footer -->
-  {t(PAD, foot_y, "PlatformIO \xb7 KiCad \xb7 EasyEDA Pro \xb7 FreeRTOS \xb7 C++ \xb7 Python", size=11, fill="#30363d")}
-  {t(W - PAD, foot_y, "schematic \u2192 silicon", size=11, fill="#00f0c8", anchor="end")}
+  {t(PAD, foot_y, "PlatformIO \xb7 KiCad \xb7 EasyEDA Pro \xb7 FreeRTOS \xb7 C++ \xb7 Python", size=12, fill="#30363d")}
+  {t(W - PAD, foot_y, "schematic \u2192 silicon", size=12, fill="#00f0c8", anchor="end")}
 </svg>'''
 
 
