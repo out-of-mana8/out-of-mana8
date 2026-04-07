@@ -148,7 +148,7 @@ def svg():
 
     # HR positions
     hr1 = 98
-    hr2 = row2_bot + 28
+    hr2 = row2_bot + 48
     hr3 = card_row2_y + CARD_H + 24
 
     # header subtitle — two badge pills
