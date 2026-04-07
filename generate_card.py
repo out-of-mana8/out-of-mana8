@@ -1,120 +1,160 @@
-SVG_WIDTH = 740
-SVG_HEIGHT = 420
+OUTPUT = "profile-card.svg"
+
+W = 760
+H = 490
+
+DOMAINS = [
+    ("AUDIO",    "#00f0c8", ["full-duplex · AEC/VAD", "I\u00b2S signal chains", "edge STT\u2192LLM\u2192TTS"], "ESP32-S3 · Class-D amp"),
+    ("VISION",   "#00b896", ["MIPI CSI-2 · DSI", "IMX708 · ESP32-P4", "IMU · LiPo power"],                   "custom SoC board"),
+    ("AVIONICS", "#007a63", ["EE validation · Zipline", "GPS RTK prototyping", "ESP32 mesh networks"],         "Oshkosh AeroTech"),
+    ("SENSING",  "#4d9e8c", ["op-amp · anti-alias", "flex PCB · wearable", "medical · env. monitor"],         "Stanford AI Lab"),
+]
+
+PIPELINE = ["schematic", "PCB layout", "JLCPCB fab", "bring-up", "firmware", "UI / API"]
+
+SIGNAL = [
+    ("analog:",  "op-amp \xb7 anti-alias filter \xb7 ESD protection"),
+    ("digital:", "I\u00b2S \xb7 MIPI CSI-2 \xb7 MIPI DSI \xb7 SPI \xb7 I\u00b2C \xb7 UART \xb7 USB-C"),
+    ("power:",   "LiPo \xb7 LDO \xb7 decoupling \xb7 ESD \xb7 power sequencing"),
+]
+
+PAD = 36   # left/right margin
+
+
+def hr(y):
+    return f'<line x1="{PAD}" y1="{y}" x2="{W - PAD}" y2="{y}" stroke="#21262d" stroke-width="0.5"/>'
+
+
+def text(x, y, s, size=12, fill="#8b949e", anchor="start", weight="normal", spacing=None):
+    ls = f' letter-spacing="{spacing}"' if spacing else ""
+    fw = f' font-weight="{weight}"' if weight != "normal" else ""
+    return f'<text x="{x}" y="{y}" font-size="{size}" fill="{fill}" text-anchor="{anchor}"{fw}{ls}>{s}</text>'
+
+
+def pipeline_node(x, y, label, w=92, h=30, accent=False):
+    stroke = "#00f0c8" if accent else "#21262d"
+    color  = "#00f0c8" if accent else "#8b949e"
+    cx = x + w // 2
+    return (
+        f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="5"'
+        f' fill="#0d1117" stroke="{stroke}" stroke-width="0.8"/>\n  '
+        + text(cx, y + 20, label, size=11, fill=color, anchor="middle")
+    )
+
+
+def pipeline_arrow(x1, x2, y):
+    mid = (x1 + x2) // 2
+    return (
+        f'<line x1="{x1}" y1="{y}" x2="{x2 - 7}" y2="{y}" stroke="#21262d" stroke-width="1"/>\n  '
+        f'<polygon points="{x2-7},{y-4} {x2},{y} {x2-7},{y+4}" fill="#21262d"/>'
+    )
+
+
+def domain_card(x, y, w, title, color, lines, sub=""):
+    h = 116
+    rows = "".join(
+        f'\n  ' + text(x + 14, y + 38 + i * 20, line, size=11)
+        for i, line in enumerate(lines)
+    )
+    sub_el = f'\n  ' + text(x + 14, y + 102, sub, size=10, fill="#30363d") if sub else ""
+    bar    = f'<rect x="{x}" y="{y}" width="{w}" height="3" fill="{color}"/>'
+    box    = f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="7" fill="#0d1117" stroke="#21262d" stroke-width="0.5"/>'
+    ttl    = text(x + 14, y + 20, title, size=10, fill=color, spacing="2")
+    return f'{box}\n  {bar}\n  {ttl}{rows}{sub_el}'
+
+
+def kv_row(x, y, key, value):
+    return (
+        text(x, y, key, size=11, fill="#79c0ff")
+        + "\n  "
+        + text(x + 82, y, value, size=11)
+    )
+
 
 def svg():
-    return f'''<svg viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}">
+    # ── layout constants ──────────────────────────────────────
+    node_w   = 92
+    node_gap = 18          # gap between nodes (for arrow)
+    n        = len(PIPELINE)
+    total_nw = n * node_w + (n - 1) * node_gap
+    node_x0  = (W - total_nw) // 2   # center the pipeline
+    node_xs  = [node_x0 + i * (node_w + node_gap) for i in range(n)]
+    node_y   = 144
+    node_cy  = node_y + 15            # vertical center of nodes
+
+    card_gap = 12
+    n_cards  = len(DOMAINS)
+    card_w   = (W - 2 * PAD - (n_cards - 1) * card_gap) // n_cards
+    card_xs  = [PAD + i * (card_w + card_gap) for i in range(n_cards)]
+    card_y   = 210
+
+    sig_y0   = 370
+    sig_gap  = 24
+
+    # ── build elements ────────────────────────────────────────
+    nodes = "\n  ".join(
+        pipeline_node(x, node_y, label, w=node_w, accent=(i == 0 or i == n - 1))
+        for i, (x, label) in enumerate(zip(node_xs, PIPELINE))
+    )
+    arrows = "\n  ".join(
+        pipeline_arrow(node_xs[i] + node_w, node_xs[i + 1], node_cy)
+        for i in range(n - 1)
+    )
+    cards = "\n  ".join(
+        domain_card(x, card_y, card_w, title, color, lines, sub)
+        for x, (title, color, lines, sub) in zip(card_xs, DOMAINS)
+    )
+    signal = "\n  ".join(
+        kv_row(PAD, sig_y0 + i * sig_gap, k, v)
+        for i, (k, v) in enumerate(SIGNAL)
+    )
+
+    hr1 = node_y - 16
+    hr2 = card_y - 16
+    hr3 = card_y + 116 + 16
+    hr4 = sig_y0 + len(SIGNAL) * sig_gap + 4
+    foot_y = hr4 + 26
+
+    return f'''<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}">
   <defs>
-    <style>
-      text {{ font-family: "JetBrains Mono", "Courier New", monospace; }}
-    </style>
+    <style>text {{ font-family: "JetBrains Mono", "Courier New", monospace; }}</style>
   </defs>
 
-  <!-- background -->
-  <rect width="{SVG_WIDTH}" height="{SVG_HEIGHT}" fill="#0d1117" rx="12"/>
+  <rect width="{W}" height="{H}" fill="#0d1117" rx="12"/>
+  <rect width="{W}" height="3" fill="#00f0c8"/>
 
-  <!-- top accent bar -->
-  <rect width="{SVG_WIDTH}" height="2" fill="#00f0c8"/>
+  <!-- header -->
+  {text(PAD, 50, "HARDWARE ENGINEER", size=11, fill="#555e6b", spacing="2.5")}
+  {text(PAD, 82, "out-of-mana8", size=26, fill="#e6edf3", weight="700", spacing="-0.5")}
+  {text(PAD, 104, "ECE @ Vanderbilt University \xb7 Synaptics \xb7 AI-optimized silicon", size=12, fill="#8b949e")}
 
-  <!-- ── HEADER ─────────────────────────────────────────────── -->
-  <text x="32" y="44" font-size="11" fill="#8b949e" letter-spacing="2">HARDWARE ENGINEER</text>
-  <text x="32" y="72" font-size="22" font-weight="700" fill="#e6edf3" letter-spacing="-0.5">out-of-mana8</text>
-  <text x="32" y="92" font-size="11" fill="#8b949e">ECE @ Vanderbilt University · Synaptics · AI-optimized silicon</text>
+  {hr(hr1)}
 
-  <line x1="32" y1="108" x2="708" y2="108" stroke="#21262d" stroke-width="0.5"/>
+  <!-- pipeline -->
+  {nodes}
+  {arrows}
 
-  <!-- ── PIPELINE FLOW ──────────────────────────────────────── -->
-  {pipeline_node(32,  124, "schematic", accent=True)}
-  {pipeline_node(148, 124, "PCB layout")}
-  {pipeline_node(264, 124, "JLCPCB fab")}
-  {pipeline_node(380, 124, "bring-up")}
-  {pipeline_node(496, 124, "firmware")}
-  {pipeline_node(612, 124, "UI / API", accent=True)}
+  {hr(hr2)}
 
-  {pipeline_arrow(122, 148)}
-  {pipeline_arrow(238, 264)}
-  {pipeline_arrow(354, 380)}
-  {pipeline_arrow(470, 496)}
-  {pipeline_arrow(586, 612)}
+  <!-- domain cards -->
+  {cards}
 
-  <line x1="32" y1="168" x2="708" y2="168" stroke="#21262d" stroke-width="0.5"/>
+  {hr(hr3)}
 
-  <!-- ── DOMAIN CARDS ───────────────────────────────────────── -->
-  {domain_card(32,  180, 158, "AUDIO",    "#00f0c8", [
-      "full-duplex · AEC/VAD",
-      "I\u00b2S signal chains",
-      "edge STT\u2192LLM\u2192TTS",
-  ], sub="ESP32-S3 · Class-D amp")}
+  <!-- signal chain -->
+  {text(PAD, sig_y0 - 16, "SIGNAL CHAIN", size=10, fill="#30363d", spacing="2")}
+  {signal}
 
-  {domain_card(200, 180, 158, "VISION",   "#00b896", [
-      "MIPI CSI-2 · DSI",
-      "IMX708 · ESP32-P4",
-      "IMU · LiPo power",
-  ], sub="custom SoC board")}
+  {hr(hr4)}
 
-  {domain_card(368, 180, 158, "AVIONICS", "#007a63", [
-      "EE validation · Zipline",
-      "GPS RTK prototyping",
-      "ESP32 mesh networks",
-  ], sub="Oshkosh AeroTech")}
-
-  {domain_card(536, 180, 172, "SENSING",  "#4d9e8c", [
-      "op-amp · anti-alias",
-      "flex PCB · wearable",
-      "medical · env. monitor",
-  ], sub="Stanford AI Lab")}
-
-  <line x1="32" y1="284" x2="708" y2="284" stroke="#21262d" stroke-width="0.5"/>
-
-  <!-- ── SIGNAL CHAIN ───────────────────────────────────────── -->
-  <text x="32" y="306" font-size="9" fill="#30363d" letter-spacing="2">SIGNAL CHAIN</text>
-
-  {kv_row(32, 326, "analog:",  "op-amp · anti-alias filter · ESD protection")}
-  {kv_row(32, 344, "digital:", "I\u00b2S · MIPI CSI-2 · MIPI DSI · SPI · I\u00b2C · UART · USB-C")}
-  {kv_row(32, 362, "power:",   "LiPo · LDO · decoupling · ESD · power sequencing")}
-
-  <line x1="32" y1="378" x2="708" y2="378" stroke="#21262d" stroke-width="0.5"/>
-
-  <!-- ── FOOTER ─────────────────────────────────────────────── -->
-  <text x="32"  y="400" font-size="10" fill="#30363d">PlatformIO · KiCad · EasyEDA Pro · FreeRTOS · C++ · Python · JLCPCB</text>
-  <text x="708" y="400" font-size="10" fill="#00f0c8" text-anchor="end">schematic \u2192 silicon</text>
+  <!-- footer -->
+  {text(PAD, foot_y, "PlatformIO \xb7 KiCad \xb7 EasyEDA Pro \xb7 FreeRTOS \xb7 C++ \xb7 Python \xb7 JLCPCB", size=10, fill="#30363d")}
+  {text(W - PAD, foot_y, "schematic \u2192 silicon", size=10, fill="#00f0c8", anchor="end")}
 
 </svg>'''
 
 
-def pipeline_node(x, y, label, accent=False):
-    color = "#00f0c8" if accent else "#21262d"
-    text_color = "#00f0c8" if accent else "#8b949e"
-    cx = x + 45
-    return f'''<rect x="{x}" y="{y}" width="90" height="26" rx="4" fill="#0d1117" stroke="{color}" stroke-width="0.75"/>
-  <text x="{cx}" y="{y + 17}" font-size="10" fill="{text_color}" text-anchor="middle">{label}</text>'''
-
-
-def pipeline_arrow(x1, x2):
-    y = 137
-    return f'''<line x1="{x1}" y1="{y}" x2="{x2 - 8}" y2="{y}" stroke="#21262d" stroke-width="1"/>
-  <polygon points="{x2 - 8},{y - 4} {x2},{y} {x2 - 8},{y + 4}" fill="#21262d"/>'''
-
-
-def domain_card(x, y, w, title, color, lines, sub=""):
-    h = 88
-    rows = ""
-    for i, line in enumerate(lines):
-        rows += f'\n  <text x="{x + 12}" y="{y + 30 + i * 16}" font-size="10" fill="#8b949e">{line}</text>'
-    sub_el = ""
-    if sub:
-        sub_el = f'\n  <text x="{x + 12}" y="{y + 79}" font-size="9" fill="#30363d">{sub}</text>'
-    return f'''<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="#0d1117" stroke="#21262d" stroke-width="0.5"/>
-  <rect x="{x}" y="{y}" width="{w}" height="3" fill="{color}"/>
-  <text x="{x + 12}" y="{y + 16}" font-size="9" fill="{color}" letter-spacing="1.5">{title}</text>{rows}{sub_el}'''
-
-
-def kv_row(x, y, key, value):
-    return f'''<text x="{x}"       y="{y}" font-size="10" fill="#79c0ff">{key}</text>
-  <text x="{x + 78}" y="{y}" font-size="10" fill="#8b949e">{value}</text>'''
-
-
 if __name__ == "__main__":
-    output = svg()
-    with open("profile-card.svg", "w", encoding="utf-8") as f:
-        f.write(output)
-    print("profile-card.svg written.")
+    with open(OUTPUT, "w", encoding="utf-8") as f:
+        f.write(svg())
+    print(f"{OUTPUT} written.")
