@@ -133,23 +133,24 @@ def svg():
     nodes_r2  = "\n  ".join(node(x, row2_y, l) for x, l in zip(node_xs, PIPELINE_ROW2))
     arrows_r2 = "\n  ".join(larrow(node_xs[i+1], node_xs[i]+NODE_W, row2_cy) for i in range(n-1))
 
+    # HR positions
+    hr1 = 98
+    hr2 = row2_bot + 48
+
+
     # domain cards 2×2
     card_gap    = 16
     card_w      = (W - 2 * PAD - card_gap) // 2
     card_xs     = [PAD, PAD + card_w + card_gap]
-    card_row1_y = 328
+    card_row1_y = hr2 + 52
     card_row2_y = card_row1_y + CARD_H + 16
+    hr3         = card_row2_y + CARD_H + 28
 
     cards = "\n  ".join(
         domain_card(card_xs[i % 2], card_row1_y if i < 2 else card_row2_y,
                     card_w, title, color, lines, sub)
         for i, (title, color, lines, sub) in enumerate(DOMAINS)
     )
-
-    # HR positions
-    hr1 = 98
-    hr2 = row2_bot + 48
-    hr3 = card_row2_y + CARD_H + 24
 
     # header subtitle — two badge pills
     hb1_svg, hb1_w = pill(PAD, 80, "ECE @ Vanderbilt", size=14, fill=C_TEXT, bg="#1a2540", px=10, py=4)
