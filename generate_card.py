@@ -104,15 +104,15 @@ CARD_H = 162
 
 def domain_card(x, y, w, title, color, lines, sub=""):
     rows = "".join(
-        f'\n  ' + t(x + 16, y + 54 + i * 24, line, size=14, fill=C_TEXT)
+        f'\n  ' + t(x + 10, y + 54 + i * 24, line, size=14, fill=C_TEXT)
         for i, line in enumerate(lines)
     )
-    sub_el = f'\n  ' + t(x + 16, y + 140, sub, size=13, fill="#8b949e") if sub else ""
+    sub_el = f'\n  ' + t(x + 10, y + 140, sub, size=13, fill="#8b949e") if sub else ""
     return (
         f'<rect x="{x}" y="{y}" width="{w}" height="{CARD_H}" rx="8"'
         f' fill="{C_CARD}" stroke="{C_BORDER}" stroke-width="0.6"/>\n  '
         f'<rect x="{x}" y="{y}" width="{w}" height="3" fill="{color}"/>\n  '
-        + t(x + 16, y + 26, title, size=13, fill=color, spacing="2")
+        + t(x + 10, y + 26, title, size=13, fill=color, spacing="2")
         + rows + sub_el
     )
 
