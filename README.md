@@ -4,6 +4,6 @@
 
 </div>
 
-![](profile-card.svg)
+![](profile-card.svg?v=2)
 
 
