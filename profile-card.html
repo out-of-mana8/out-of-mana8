@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>out-of-mana8</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d1117;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: "JetBrains Mono", "Courier New", monospace;
+  }
+
+  .card-wrap {
+    width: 740px;
+    background: #0d1117;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #21262d;
+  }
+
+  .top-bar { height: 2px; background: #00f0c8; }
+
+  .inner { padding: 28px 32px 24px; }
+
+  /* header */
+  .role   { font-size: 11px; color: #8b949e; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .handle { font-size: 22px; font-weight: 700; color: #e6edf3; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .sub    { font-size: 11px; color: #8b949e; }
+
+  hr { border: none; border-top: 0.5px solid #21262d; margin: 16px 0; }
+
+  /* pipeline */
+  .pipeline { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; margin-bottom: 4px; }
+  .node {
+    font-size: 10px; color: #8b949e;
+    border: 0.75px solid #21262d;
+    border-radius: 4px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .node.accent { color: #00f0c8; border-color: #00f0c8; }
+  .arrow { font-size: 14px; color: #21262d; padding: 0 4px; line-height: 1; }
+
+  /* domain cards */
+  .domains { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .card {
+    background: #0d1117;
+    border: 0.5px solid #21262d;
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 10px 12px 10px;
+  }
+  .card-bar   { height: 3px; margin: -10px -12px 8px; }
+  .card-title { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .card-line  { font-size: 10px; color: #8b949e; line-height: 1.9; }
+  .card-sub   { font-size: 9px; color: #30363d; margin-top: 5px; }
+
+  /* signal chain */
+  .section-label { font-size: 9px; color: #30363d; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .kv         { display: flex; gap: 16px; font-size: 10px; line-height: 2.1; }
+  .key        { color: #79c0ff; min-width: 58px; }
+  .val        { color: #8b949e; }
+
+  /* footer */
+  .footer     { display: flex; justify-content: space-between; align-items: center; font-size: 10px; }
+  .footer-l   { color: #30363d; }
+  .footer-r   { color: #00f0c8; }
+</style>
+</head>
+<body>
+<div class="card-wrap">
+  <div class="top-bar"></div>
+  <div class="inner">
+
+    <div class="role">Hardware Engineer</div>
+    <div class="handle">out-of-mana8</div>
+    <div class="sub">ECE @ Vanderbilt University · Synaptics · AI-optimized silicon</div>
+
+    <hr>
+
+    <div class="pipeline">
+        <div class="node  accent">schematic</div>
+        <div class="arrow">›</div>
+        <div class="node">PCB layout</div>
+        <div class="arrow">›</div>
+        <div class="node">JLCPCB fab</div>
+        <div class="arrow">›</div>
+        <div class="node">bring-up</div>
+        <div class="arrow">›</div>
+        <div class="node">firmware</div>
+        <div class="arrow">›</div>
+        <div class="node  accent">UI / API</div>
+    </div>
+
+    <hr>
+
+    <div class="domains">
+        <div class="card">
+          <div class="card-bar" style="background:#00f0c8"></div>
+          <div class="card-title" style="color:#00f0c8">AUDIO</div>
+          <div class="card-line">full-duplex · AEC/VAD</div><div class="card-line">I²S signal chains</div><div class="card-line">edge STT→LLM→TTS</div>
+          <div class="card-sub">ESP32-S3 · Class-D amp</div>
+        </div>
+        <div class="card">
+          <div class="card-bar" style="background:#00b896"></div>
+          <div class="card-title" style="color:#00b896">VISION</div>
+          <div class="card-line">MIPI CSI-2 · DSI</div><div class="card-line">IMX708 · ESP32-P4</div><div class="card-line">IMU · LiPo power</div>
+          <div class="card-sub">custom SoC board</div>
+        </div>
+        <div class="card">
+          <div class="card-bar" style="background:#007a63"></div>
+          <div class="card-title" style="color:#007a63">AVIONICS</div>
+          <div class="card-line">EE validation · Zipline</div><div class="card-line">GPS RTK prototyping</div><div class="card-line">ESP32 mesh networks</div>
+          <div class="card-sub">Oshkosh AeroTech</div>
+        </div>
+        <div class="card">
+          <div class="card-bar" style="background:#4d9e8c"></div>
+          <div class="card-title" style="color:#4d9e8c">SENSING</div>
+          <div class="card-line">op-amp · anti-alias</div><div class="card-line">flex PCB · wearable</div><div class="card-line">medical · env. monitor</div>
+          <div class="card-sub">Stanford AI Lab</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="section-label">Signal Chain</div>
+    <div class="signal">
+        <div class="kv"><span class="key">analog:</span><span class="val">op-amp · anti-alias filter · ESD protection</span></div>
+        <div class="kv"><span class="key">digital:</span><span class="val">I²S · MIPI CSI-2 · MIPI DSI · SPI · I²C · UART · USB-C</span></div>
+        <div class="kv"><span class="key">power:</span><span class="val">LiPo · LDO · decoupling · ESD · power sequencing</span></div>
+    </div>
+
+    <hr>
+
+    <div class="footer">
+      <div class="footer-l">PlatformIO · KiCad · EasyEDA Pro · FreeRTOS · C++ · Python · JLCPCB</div>
+      <div class="footer-r">schematic → silicon</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
