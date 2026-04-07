@@ -23,10 +23,10 @@ toolchain:  [ESP32-S3/P4, C++, FreeRTOS, Python, PlatformIO, KiCad]
 
 ---
 
-### Featured
+### Currently Working On
 
 <a href="https://github.com/out-of-mana8/esp32-talking-agent">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=out-of-mana8&repo=esp32-talking-agent&theme=dark&bg_color=0f0f0f&border_color=1e1e1e&title_color=00f0c8&icon_color=00f0c8&text_color=aaaaaa" />
+  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=out-of-mana8&repo=esp32-talking-agent&theme=dark&bg_color=0f0f0f&border_color=1e1e1e&title_color=00f0c8&icon_color=00f0c8&text_color=aaaaaa&cache_seconds=86400" />
 </a>
 
 <br clear="left"/>
