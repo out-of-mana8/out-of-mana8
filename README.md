@@ -6,19 +6,10 @@
 
 ---
 
+![](profile-card.svg)
 ```yaml
-# out-of-mana8
-degree:  ECE @ Vanderbilt University
-builds:  "schematic → PCB → firmware → bring-up → server → UI"
-
-domains:
-  🎙 audio:    "Full-duplex · AEC/VAD · I²S chains · ESP32-S3 · Edge STT → LLM → TTS"
-  📷 vision:   "MIPI CSI-2/DSI · IMX708 · ESP32-P4 · IMU · LiPo power management"
-  ✈️ avionics: "EE validation · Zipline drones · GPS RTK · ESP32 mesh networking"
-  🧪 sensing:  "Op-amp chains · flex PCBs · wearable · medical · environmental"
-
-interfaces: [MIPI CSI-2, MIPI DSI, I²S, I²C, SPI, UART, USB-C]
-toolchain:  [ESP32-S3/P4, C++, FreeRTOS, Python, PlatformIO, KiCad]
+# ┌─ hardware engineer ──────────────────┐
+# your yaml block here
 ```
 
 ---
