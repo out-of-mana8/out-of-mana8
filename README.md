@@ -1,6 +1,6 @@
 <div align="center">
 
-![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&duration=3000&pause=800&color=00F0C8&center=true&vCenter=true&width=600&lines=Hardware+Engineer;Full+Duplex+Audio+%2F+Edge+AI;Custom+PCBs+%E2%80%94+from+schematic+to+silicon;MIPI+Camera+%2F+ESP32+%2F+embedded+everything)
+![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=20&duration=3000&pause=800&color=00F0C8&center=true&vCenter=true&width=650&lines=Hardware+Engineer;Schematic+%E2%86%92+PCB+%E2%86%92+Firmware+%E2%86%92+Server+%E2%86%92+UI;MIPI+CSI-2+%C2%B7+I%C2%B2S+%C2%B7+Mixed-Signal+%C2%B7+Edge+AI;Avionics+%C2%B7+Medical+%C2%B7+Audio+%C2%B7+Vision)
 
 </div>
 
@@ -10,36 +10,68 @@
 ┌─────────────────────────────────────────────────────────────────┐
 │  > whoami                                                       │
 │                                                                 │
-│  Hardware enthusiast building edge AI devices from scratch.     │
-│  Custom PCBs · Full-duplex audio pipelines · MIPI camera        │
-│  systems · ESP32-S3 · voice AI at the edge.                     │
+│  ECE @ Vanderbilt. Building devices from schematic to          │
+│  silicon — analog signal chains, high-speed interfaces,         │
+│  embedded firmware, and the full-stack infrastructure           │
+│  around them.                                                   │
 │                                                                 │
-│  Currently working on:                                          │
-│    ├─ Full-duplex audio on embedded hardware (AEC, VAD, TTS)    │
-│    └─ Edge AI camera devices over MIPI CSI-2                    │
+│  Domains:                                                       │
+│    ├─ Edge AI · Full-duplex audio · Voice pipelines            │
+│    ├─ MIPI camera systems · Custom SoC boards                  │
+│    ├─ Avionics EE validation · GPS/RTK · Mesh networking       │
+│    └─ Mixed-signal PCBs · Medical devices · Env. sensing       │
+│                                                                 │
+│  > _                                                            │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-### What I work with
+### Domains
 
-<div align="center">
+| | | |
+|---|---|---|
+| 🎙 **Audio / Voice AI** | 📷 **Vision / Camera** | ✈️ **Avionics / Aerospace** |
+| Full-duplex pipelines · AEC · VAD | MIPI CSI-2 · IMX708 · DSI display | EE validation · GPS RTK prototyping |
+| Custom I²S signal chains | Custom ESP32-P4 board design | ESP32 mesh networking |
+| Edge STT/LLM/TTS inference | IMU · LiPo power management | Ground equipment systems |
+| | | |
+| 🧪 **Mixed-Signal / Sensing** | ⚙️ **Embedded Systems** | 🔬 **Research Hardware** |
+| Op-amp signal chains · Filters | FreeRTOS · PlatformIO · C++ | Flexible PCBs · Wearable sensors |
+| ESD protection · Decoupling | Bring-up · Validation · Debug | Medical device prototyping |
+| JLCPCB fab · LCSC BOM | Python servers · WebSocket APIs | MEMS microphones · ADC front-ends |
 
-![ESP32](https://img.shields.io/badge/ESP32--S3-E03030?style=flat-square&logo=espressif&logoColor=white)
+---
+
+### Workflow
+
+```
+requirements ──▶ schematic ──▶ PCB layout ──▶ fab (JLCPCB)
+                                                    │
+UI / API     ◀── server    ◀── firmware    ◀── bring-up
+```
+
+Every layer. No handoffs.
+
+---
+
+### Interfaces & Protocols
+
+![MIPI CSI-2](https://img.shields.io/badge/MIPI%20CSI--2-00f0c8?style=flat-square)
+![MIPI DSI](https://img.shields.io/badge/MIPI%20DSI-00f0c8?style=flat-square)
+![I2S](https://img.shields.io/badge/I²S-00f0c8?style=flat-square)
+![I2C](https://img.shields.io/badge/I²C-00f0c8?style=flat-square)
+![SPI](https://img.shields.io/badge/SPI-00f0c8?style=flat-square)
+![USB-C](https://img.shields.io/badge/USB--C-00f0c8?style=flat-square)
+
+### Toolchain
+
+![ESP32](https://img.shields.io/badge/ESP32-E03030?style=flat-square&logo=espressif&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![FreeRTOS](https://img.shields.io/badge/FreeRTOS-007ACC?style=flat-square)
 ![PlatformIO](https://img.shields.io/badge/PlatformIO-F5822A?style=flat-square&logo=platformio&logoColor=white)
 ![KiCad](https://img.shields.io/badge/KiCad-314CB0?style=flat-square)
-
-![I2S](https://img.shields.io/badge/I²S%20Audio-00f0c8?style=flat-square)
-![MIPI](https://img.shields.io/badge/MIPI%20CSI--2-00f0c8?style=flat-square)
-![I2C](https://img.shields.io/badge/I²C-00f0c8?style=flat-square)
-![SPI](https://img.shields.io/badge/SPI-00f0c8?style=flat-square)
-![USB](https://img.shields.io/badge/USB--C-00f0c8?style=flat-square)
-
-</div>
 
 ---
 
@@ -52,7 +84,7 @@
 <br clear="left"/>
 
 > Battery-powered ESP32-S3 · dual I²S mics · stereo Class-D amp · custom PCB  
-> Whisper STT → Claude LLM → kokoro TTS · ~1.9 s end-to-end latency
+> Whisper STT → Claude LLM → kokoro TTS · ~1.9s end-to-end latency
 
 ---
 
@@ -69,5 +101,5 @@
 ---
 
 <div align="center">
-<sub>PCB → firmware → server → UI — all the way down</sub>
+<sub>ECE @ Vanderbilt · Synaptics · avionics · medical · AI hardware</sub>
 </div>
