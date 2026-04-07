@@ -63,175 +63,37 @@ Edge AI · Mixed-signal · Avionics — end-to-end hardware (schematic → PCB �
 > Battery-powered ESP32-S3 · dual I²S mics · stereo Class-D amp · custom PCB  
 > Whisper STT → Claude LLM → kokoro TTS · ~1.9s end-to-end latency
 
+<div align="center"><em>Studying ECE at Vanderbilt · avionics · medical · AI hardware</em></div>
+
+---
+
+### Domains
+
+| 🎙 Audio / Voice AI | 📷 Vision / Camera |
+|---|---|
+| Full-duplex pipeline · AEC · VAD<br>Custom I²S signal chains<br>Edge STT → LLM → TTS<br>ESP32-S3 · Class-D amp | MIPI CSI-2 · IMX708 · DSI<br>Custom ESP32-P4 board<br>IMU · LiPo power management<br>Full camera pipeline design |
+
+| ✈️ Avionics / Aerospace | 🧪 Mixed-Signal / Sensing |
+|---|---|
+| EE validation · Zipline drones<br>GPS RTK prototyping<br>ESP32 mesh networking<br>Ground support equipment | Op-amp chains · anti-alias filters<br>Flexible PCBs · wearable sensors<br>Medical device hardware<br>Environmental monitoring |
+
+---
+
+### Workflow
+
+```
+requirements ──▶ schematic ──▶ PCB layout ──▶ JLCPCB fab
+                                                    │
+  UI / API ◀── server ◀── firmware ◀── bring-up ◀──┘
+```
+
+> Every layer. No handoffs.
+
+---
+
+### Stats
+
 <div align="center">
-*Studying ECE at Vanderbilt · avionics · medical · AI hardware*
+  <img src="https://github-readme-stats.vercel.app/api?username=out-of-mana8&show_icons=true&theme=dark&bg_color=0f0f0f&border_color=1e1e1e&title_color=00f0c8&icon_color=00f0c8&text_color=aaaaaa&hide_border=false&count_private=true" height="145"/>
+  <img src="https://streak-stats.demolab.com?user=out-of-mana8&theme=dark&background=0f0f0f&border=1e1e1e&ring=00f0c8&fire=00d4b0&currStreakLabel=00f0c8&sideLabels=aaaaaa&dates=555555" height="145"/>
 </div>
-
-  /* Stats row */
-  .stats { display: flex; gap: 12px; margin-bottom: 1.75rem; flex-wrap: wrap; }
-  .stats img { border-radius: 8px; height: 145px; }
-</style>
-</head>
-<body>
-<div class="wrap">
-
-  <div class="header">
-    <div class="headline">
-      Hardware Engineering Student<br>
-      <span class="accent">·</span> Edge AI
-      <span class="accent">·</span> Mixed-Signal
-      <span class="accent">·</span> Custom PCB
-    </div>
-    <div class="sub" style="margin-top:12px;">
-      Studying ECE at Vanderbilt — Building devices from <span class="hl">schematic to silicon</span> — analog signal chains, high-speed interfaces,<br>
-      embedded firmware, and the full-stack infrastructure around them.<br>
-      <span class="hl">Avionics · Medical · Audio · Vision · Environmental sensing.</span>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <div class="terminal">
-    <div class="term-bar">
-      <div class="dot d-r"></div>
-      <div class="dot d-y"></div>
-      <div class="dot d-g"></div>
-    </div>
-    <div class="tl"><span class="p">$ </span><span style="color:#2a2a2a"># what I build</span></div>
-    <div class="tl"><span class="p">$ </span>ls domains/</div>
-    <div class="tl">
-      <span class="v">edge-ai/</span>&nbsp;&nbsp;
-      <span class="v">mixed-signal/</span>&nbsp;&nbsp;
-      <span class="v">avionics/</span>&nbsp;&nbsp;
-      <span class="v">medical/</span>
-    </div>
-    <div class="tl"><span class="p">$ </span>cat stack.txt</div>
-    <div class="tl">
-      <span class="w">schematic</span> <span class="dim">→</span>
-      <span class="w">PCB layout</span> <span class="dim">→</span>
-      <span class="w">fab</span> <span class="dim">→</span>
-      <span class="w">bring-up</span> <span class="dim">→</span>
-      <span class="w">firmware</span> <span class="dim">→</span>
-      <span class="w">server</span> <span class="dim">→</span>
-      <span class="w">UI</span>
-    </div>
-    <div class="tl"><span class="p">$ </span><span class="cursor"></span></div>
-  </div>
-
-  <div class="section-label">domains</div>
-  <div class="domains">
-    <div class="domain">
-      <div class="domain-head">
-        <div class="domain-icon">🎙</div>
-        <div class="domain-title">Audio / Voice AI</div>
-      </div>
-      <div class="domain-items">
-        <span>Full-duplex pipeline · AEC · VAD</span><br>
-        <span>Custom I²S signal chains</span><br>
-        <span>Edge STT → LLM → TTS</span><br>
-        <span>ESP32-S3 · Class-D amp</span>
-      </div>
-    </div>
-    <div class="domain">
-      <div class="domain-head">
-        <div class="domain-icon">📷</div>
-        <div class="domain-title">Vision / Camera</div>
-      </div>
-      <div class="domain-items">
-        <span>MIPI CSI-2 · IMX708 · DSI</span><br>
-        <span>Custom ESP32-P4 board</span><br>
-        <span>IMU · LiPo power management</span><br>
-        <span>Full camera pipeline design</span>
-      </div>
-    </div>
-    <div class="domain">
-      <div class="domain-head">
-        <div class="domain-icon">✈️</div>
-        <div class="domain-title">Avionics / Aerospace</div>
-      </div>
-      <div class="domain-items">
-        <span>EE validation · Zipline drones</span><br>
-        <span>GPS RTK prototyping</span><br>
-        <span>ESP32 mesh networking</span><br>
-        <span>Ground support equipment</span>
-      </div>
-    </div>
-    <div class="domain">
-      <div class="domain-head">
-        <div class="domain-icon">🧪</div>
-        <div class="domain-title">Mixed-Signal / Sensing</div>
-      </div>
-      <div class="domain-items">
-        <span>Op-amp chains · anti-alias filters</span><br>
-        <span>Flexible PCBs · wearable sensors</span><br>
-        <span>Medical device hardware</span><br>
-        <span>Environmental monitoring</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">workflow</div>
-  <div class="workflow">
-    <span class="anode">requirements</span>
-    <span style="color:#1e1e1e"> ──▶ </span>
-    <span class="node">schematic</span>
-    <span style="color:#1e1e1e"> ──▶ </span>
-    <span class="node">PCB layout</span>
-    <span style="color:#1e1e1e"> ──▶ </span>
-    <span class="node">JLCPCB fab</span>
-    <br>
-    <span style="color:#1e1e1e; padding-left: 20ch">│</span>
-    <br>
-    <span class="anode">UI / API</span>
-    <span style="color:#1e1e1e">   ◀── </span>
-    <span class="node">server</span>
-    <span style="color:#1e1e1e">    ◀── </span>
-    <span class="node">firmware</span>
-    <span style="color:#1e1e1e">   ◀── </span>
-    <span class="node">bring-up</span>
-    <div class="tagline">Every layer. No handoffs.</div>
-  </div>
-
-  <div class="interfaces">
-    <div class="section-label">high-speed interfaces</div>
-    <div class="chip-row" style="margin-bottom:10px;">
-      <div class="chip">MIPI CSI-2</div>
-      <div class="chip">MIPI DSI</div>
-      <div class="chip">I²S</div>
-      <div class="chip">USB-C</div>
-    </div>
-    <div class="section-label" style="margin-top:12px;">toolchain</div>
-    <div class="chip-row">
-      <div class="chip-n">ESP32-S3 / P4</div>
-      <div class="chip-n">C++</div>
-      <div class="chip-n">Python</div>
-      <div class="chip-n">FreeRTOS</div>
-      <div class="chip-n">PlatformIO</div>
-      <div class="chip-n">KiCad</div>
-      <div class="chip-n">I²C</div>
-      <div class="chip-n">SPI</div>
-      <div class="chip-n">UART</div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <div class="section-label" style="margin-bottom:12px;">stats</div>
-  <div class="stats">
-    <img src="https://github-readme-stats.vercel.app/api?username=out-of-mana8&show_icons=true&theme=dark&bg_color=0f0f0f&border_color=1e1e1e&title_color=00f0c8&icon_color=00f0c8&text_color=aaaaaaa&hide_border=false&count_private=true"/>
-    <img src="https://streak-stats.demolab.com?user=out-of-mana8&theme=dark&background=0f0f0f&border=1e1e1e&ring=00f0c8&fire=00d4b0&currStreakLabel=00f0c8&sideLabels=aaaaaa&dates=555555"/>
-  </div>
-
-  <hr class="divider">
-
-  <div class="footer">
-    <div class="footer-l">
-      <div class="pulse"></div>
-      Studying ECE @ Vanderbilt · avionics · medical · AI hardware
-    </div>
-    <div class="footer-r">out-of-mana8</div>
-  </div>
-
-</div>
-</body>
-</html>
