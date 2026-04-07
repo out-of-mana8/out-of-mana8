@@ -127,15 +127,18 @@ def svg():
     row2_y  = 220;  row2_bot = row2_y + NODE_H;  row2_cy = row2_y + NODE_H // 2
     conn_x  = node_xs[-1] + NODE_W // 2
 
+    # HR positions
+    hr1 = 98
+    row1_y  = hr1 + 52;  row1_bot = row1_y + NODE_H;  row1_cy = row1_y + NODE_H // 2
+    row2_y  = row1_y + 88; row2_bot = row2_y + NODE_H;  row2_cy = row2_y + NODE_H // 2
+    conn_x  = node_xs[-1] + NODE_W // 2
+    hr2 = row2_bot + 48
+
     nodes_r1  = "\n  ".join(node(x, row1_y, l) for x, l in zip(node_xs, PIPELINE_ROW1))
     arrows_r1 = "\n  ".join(rarrow(node_xs[i]+NODE_W, node_xs[i+1], row1_cy) for i in range(n-1))
     connector = darrow(conn_x, row1_bot, row2_y)
     nodes_r2  = "\n  ".join(node(x, row2_y, l) for x, l in zip(node_xs, PIPELINE_ROW2))
     arrows_r2 = "\n  ".join(larrow(node_xs[i+1], node_xs[i]+NODE_W, row2_cy) for i in range(n-1))
-
-    # HR positions
-    hr1 = 98
-    hr2 = row2_bot + 48
 
 
     # domain cards 2×2
