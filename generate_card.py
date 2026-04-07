@@ -18,9 +18,9 @@ DOMAINS = [
         "ISP \xb7 RAW10 \xb7 D-PHY",
     ], "custom SoC board"),
     ("AVIONICS", "#007a63", [
-        "EE validation \xb7 Zipline",
-        "GPS RTK prototyping",
-        "ESP32 mesh networks",
+        "compute \xb7 EE validation",
+        "signal \xb7 power integrity",
+        "GPS RTK \xb7 mesh networks",
     ], "Zipline \xb7 Oshkosh AeroTech"),
     ("SENSING",  "#4d9e8c", [
         "EMG \xb7 ECG signal acquisition",
@@ -30,13 +30,14 @@ DOMAINS = [
 ]
 
 # colour palette
-C_BG      = "#0d1117"   # main background
-C_CARD    = "#161b22"   # card background (lifted so text pops)
-C_BORDER  = "#30363d"   # hr lines / card borders
-C_ARROW   = "#4e6070"   # arrows — clearly visible, not distracting
-C_TEXT    = "#c9d1d9"   # primary readable text
-C_DIM     = "#c9d1d9"   # secondary text — same brightness, readable
-C_ACCENT  = "#00f0c8"   # teal highlight
+C_BG     = "#0d1117"
+C_CARD   = "#161b22"
+C_BORDER = "#30363d"
+C_ARROW  = "#4e6070"
+C_TEXT   = "#c9d1d9"
+C_ACCENT = "#00f0c8"
+
+MONO_W = 0.601   # JetBrains Mono: char width / font-size ratio
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
@@ -48,8 +49,22 @@ def t(x, y, s, size=14, fill=C_TEXT, anchor="start", weight="normal", spacing=No
 def hr(y):
     return f'<line x1="{PAD}" y1="{y}" x2="{W-PAD}" y2="{y}" stroke="{C_BORDER}" stroke-width="0.5"/>'
 
-def section_label(x, y, label):
-    return t(x, y, label, size=13, fill=C_ACCENT, spacing="3")
+def pill(x, y, text, size, fill, bg, px=10, py=4, spacing=0):
+    """Text with a colored background pill."""
+    ls_gap = (len(text) - 1) * spacing
+    w  = round(len(text) * size * MONO_W + ls_gap + px * 2)
+    h  = round(size * 1.15 + py * 2)
+    ry = round(y - size * 0.82 - py)
+    ls = str(spacing) if spacing else None
+    return (
+        f'<rect x="{x - px}" y="{ry}" width="{w}" height="{h}" rx="5" fill="{bg}"/>\n  '
+        + t(x, y, text, size=size, fill=fill, spacing=ls),
+        w   # return width so caller can chain pills
+    )
+
+def section_pill(x, y, label):
+    svg, _ = pill(x, y, label, size=13, fill=C_ACCENT, bg="#0e2820", px=10, py=4, spacing=3)
+    return svg
 
 # ── pipeline ──────────────────────────────────────────────────────────────────
 
@@ -92,7 +107,7 @@ def domain_card(x, y, w, title, color, lines, sub=""):
         f'\n  ' + t(x + 16, y + 54 + i * 24, line, size=14, fill=C_TEXT)
         for i, line in enumerate(lines)
     )
-    sub_el = f'\n  ' + t(x + 16, y + 140, sub, size=13, fill=C_DIM) if sub else ""
+    sub_el = f'\n  ' + t(x + 16, y + 140, sub, size=13, fill="#8b949e") if sub else ""
     return (
         f'<rect x="{x}" y="{y}" width="{w}" height="{CARD_H}" rx="8"'
         f' fill="{C_CARD}" stroke="{C_BORDER}" stroke-width="0.6"/>\n  '
@@ -136,6 +151,10 @@ def svg():
     hr2 = row2_bot + 28
     hr3 = card_row2_y + CARD_H + 24
 
+    # header subtitle — two badge pills
+    hb1_svg, hb1_w = pill(PAD, 80, "ECE @ Vanderbilt", size=14, fill=C_TEXT, bg="#1a2540", px=10, py=4)
+    hb2_svg, _     = pill(PAD + hb1_w + 10, 80, "ASIC @ Synaptics", size=14, fill=C_TEXT, bg="#1a2540", px=10, py=4)
+
     # footer
     foot_y = hr3 + 40
     H      = foot_y + 30
@@ -149,11 +168,12 @@ def svg():
 
   <!-- header -->
   {t(PAD, 54, "Tausif Samin", size=30, fill="#e6edf3", weight="700", spacing="-0.5")}
-  {t(PAD, 80, "ECE @ Vanderbilt  \xb7  ASIC @ Synaptics", size=14, fill=C_TEXT)}
+  {hb1_svg}
+  {hb2_svg}
   {hr(hr1)}
 
   <!-- pipeline -->
-  {section_label(PAD, hr1 + 22, "PIPELINE")}
+  {section_pill(PAD, hr1 + 22, "PIPELINE")}
   {nodes_r1}
   {arrows_r1}
   {connector}
@@ -162,12 +182,12 @@ def svg():
   {hr(hr2)}
 
   <!-- domains 2x2 -->
-  {section_label(PAD, hr2 + 22, "DOMAINS")}
+  {section_pill(PAD, hr2 + 22, "DOMAINS")}
   {cards}
   {hr(hr3)}
 
   <!-- footer -->
-  {t(PAD, foot_y, "PlatformIO \xb7 KiCad \xb7 EasyEDA Pro \xb7 FreeRTOS \xb7 C++ \xb7 Python", size=12, fill=C_DIM)}
+  {t(PAD, foot_y, "PlatformIO \xb7 KiCad \xb7 EasyEDA Pro \xb7 FreeRTOS \xb7 C++ \xb7 Python", size=12, fill="#8b949e")}
   {t(W - PAD, foot_y, "schematic \u2192 silicon", size=12, fill=C_ACCENT, anchor="end")}
 </svg>'''
 
