@@ -21,20 +21,21 @@ DOMAINS = [
         "EE validation \xb7 Zipline",
         "GPS RTK prototyping",
         "ESP32 mesh networks",
-    ], "Oshkosh AeroTech"),
+    ], "Zipline \xb7 Oshkosh AeroTech"),
     ("SENSING",  "#4d9e8c", [
+        "EMG \xb7 ECG signal acquisition",
         "INA \xb7 PGA \xb7 sigma-delta ADC",
-        "SHT40 \xb7 SCD40 \xb7 OPT3001",
-        "MEMS mic \xb7 anti-alias filter",
-    ], "Stanford AI Lab"),
+        "flex bioelectronics \xb7 MEMS",
+    ], "Research"),
 ]
 
 # colour palette
 C_BG      = "#0d1117"   # main background
 C_CARD    = "#161b22"   # card background (lifted so text pops)
-C_BORDER  = "#21262d"   # subtle borders / hr lines
+C_BORDER  = "#30363d"   # hr lines / card borders
+C_ARROW   = "#4e6070"   # arrows — clearly visible, not distracting
 C_TEXT    = "#c9d1d9"   # primary readable text
-C_DIM     = "#8b949e"   # secondary text (section labels, subs, footer)
+C_DIM     = "#c9d1d9"   # secondary text — same brightness, readable
 C_ACCENT  = "#00f0c8"   # teal highlight
 
 # ── helpers ───────────────────────────────────────────────────────────────────
@@ -48,7 +49,7 @@ def hr(y):
     return f'<line x1="{PAD}" y1="{y}" x2="{W-PAD}" y2="{y}" stroke="{C_BORDER}" stroke-width="0.5"/>'
 
 def section_label(x, y, label):
-    return t(x, y, label, size=12, fill=C_DIM, spacing="2.5")
+    return t(x, y, label, size=13, fill=C_ACCENT, spacing="3")
 
 # ── pipeline ──────────────────────────────────────────────────────────────────
 
@@ -66,20 +67,20 @@ def node(x, y, label):
 
 def rarrow(x1, x2, y):
     return (
-        f'<line x1="{x1}" y1="{y}" x2="{x2-7}" y2="{y}" stroke="{C_BORDER}" stroke-width="1.2"/>\n  '
-        f'<polygon points="{x2-7},{y-4} {x2},{y} {x2-7},{y+4}" fill="{C_BORDER}"/>'
+        f'<line x1="{x1}" y1="{y}" x2="{x2-8}" y2="{y}" stroke="{C_ARROW}" stroke-width="1.8"/>\n  '
+        f'<polygon points="{x2-8},{y-5} {x2},{y} {x2-8},{y+5}" fill="{C_ARROW}"/>'
     )
 
 def larrow(x1, x2, y):
     return (
-        f'<line x1="{x1}" y1="{y}" x2="{x2+7}" y2="{y}" stroke="{C_BORDER}" stroke-width="1.2"/>\n  '
-        f'<polygon points="{x2+7},{y-4} {x2},{y} {x2+7},{y+4}" fill="{C_BORDER}"/>'
+        f'<line x1="{x1}" y1="{y}" x2="{x2+8}" y2="{y}" stroke="{C_ARROW}" stroke-width="1.8"/>\n  '
+        f'<polygon points="{x2+8},{y-5} {x2},{y} {x2+8},{y+5}" fill="{C_ARROW}"/>'
     )
 
 def darrow(x, y1, y2):
     return (
-        f'<line x1="{x}" y1="{y1}" x2="{x}" y2="{y2-7}" stroke="{C_BORDER}" stroke-width="1.2"/>\n  '
-        f'<polygon points="{x-4},{y2-7} {x},{y2} {x+4},{y2-7}" fill="{C_BORDER}"/>'
+        f'<line x1="{x}" y1="{y1}" x2="{x}" y2="{y2-8}" stroke="{C_ARROW}" stroke-width="1.8"/>\n  '
+        f'<polygon points="{x-5},{y2-8} {x},{y2} {x+5},{y2-8}" fill="{C_ARROW}"/>'
     )
 
 # ── domain cards ──────────────────────────────────────────────────────────────
@@ -148,7 +149,7 @@ def svg():
 
   <!-- header -->
   {t(PAD, 54, "Tausif Samin", size=30, fill="#e6edf3", weight="700", spacing="-0.5")}
-  {t(PAD, 80, "ECE @ Vanderbilt  \xb7  ASIC @ Synaptics", size=14, fill=C_DIM)}
+  {t(PAD, 80, "ECE @ Vanderbilt  \xb7  ASIC @ Synaptics", size=14, fill=C_TEXT)}
   {hr(hr1)}
 
   <!-- pipeline -->
